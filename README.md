@@ -122,6 +122,13 @@ codebase; `--strict` only means warnings are treated as failures on top of that.
 job, separate from lint, type check, test, and build, on every push to `main` and every pull request,
 and it's worth running locally after touching any of the files above.
 
+**CI's `Dependency audit` job runs `pnpm audit --audit-level high`, with one advisory excluded by
+GHSA ID** — see the comment next to it in `.github/workflows/ci.yml` for which one and why. Running
+that exact command locally leaves an untracked `pnpm-workspace.yaml` behind: `pnpm audit --ignore`
+persists the exclusion into an `auditConfig.ignoreCves` block as a side effect, even without `--fix`.
+It's safe to delete — CI is unaffected, since its runner is discarded after every job and never
+carries that file forward.
+
 ## Commands
 
 ```bash
