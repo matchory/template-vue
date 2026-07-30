@@ -1,0 +1,33 @@
+# Grouped per ecosystem, with a five-day cooldown as a supply-chain control: most malicious npm
+# releases are detected and yanked within hours. Security updates are advisory-driven and ignore it.
+
+version: 2
+
+multi-ecosystem-groups:
+  app:
+    schedule:
+      interval: weekly
+  github-actions:
+    schedule:
+      interval: weekly
+
+updates:
+  - package-ecosystem: npm
+    multi-ecosystem-group: app
+    directory: /
+    patterns:
+      - '*'
+    cooldown:
+      default-days: 5
+    labels:
+      - dependencies
+
+  - package-ecosystem: github-actions
+    multi-ecosystem-group: github-actions
+    directory: /
+    patterns:
+      - '*'
+    cooldown:
+      default-days: 5
+    labels:
+      - dependencies
