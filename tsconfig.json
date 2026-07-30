@@ -1,0 +1,4 @@
+{
+  "extends": "@matchory/coding-style/tsconfig/vue.json",
+  "include": ["src", "tests", "*.config.ts"]
+}
