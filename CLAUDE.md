@@ -29,7 +29,9 @@ pnpm run style:verify   # confirm the project actually consumes the shared prese
 `.editorconfig`, `oxfmt.config.ts`, `oxlint.config.ts`, `eslint.config.js`, and `tsconfig.json` are
 still wired to `@matchory/coding-style`, not that the codebase is correctly formatted, linted, typed,
 tested, or that it builds; `pnpm run fmt:check`, `lint`, `check`, `test`, and `build` cover those
-separately. `--strict` on `style:verify` treats warnings as failures on top of that, nothing more.
+separately. Each check is textual, confirming the preset is imported rather than that its rules
+survive: a config that imports the preset and then overrides every rule it sets still records `ok`.
+`--strict` on `style:verify` treats warnings as failures on top of that, nothing more.
 
 ## Style configuration lives elsewhere
 
@@ -65,9 +67,12 @@ either.
 ## Tailwind class linting depends on `tailwindEntryPoint` resolving
 
 `eslint.config.js` points `better-tailwindcss` at `src/style.css` so it can read the project's theme
-and report both unknown classes and incorrect class order. If that path is renamed or moved without
-updating `tailwindEntryPoint`, the plugin does not error — it silently stops checking Tailwind
-classes at all, and lint stays green. Keep the two in sync.
+and report both unknown classes and incorrect class order. Two different failures matter here, not
+one: omitting `tailwindEntryPoint` removes both rules with no diagnostic, which is why this template
+sets it rather than leaving it optional. Renaming or moving `src/style.css` without updating the
+option does not do that — the plugin instead falls back to Tailwind's default theme and prefixes
+every message with a misconfiguration warning, so the rules keep running but the project's own
+`@theme` utilities start being reported as unknown classes. Keep the two in sync either way.
 
 ## No build-only tsconfig
 
