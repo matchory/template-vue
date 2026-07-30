@@ -1,7 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pnpm run dev)",
       "Bash(pnpm run fmt)",
       "Bash(pnpm run fmt:check)",
       "Bash(pnpm run lint)",

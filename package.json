@@ -22,7 +22,7 @@
   "devDependencies": {
     "@matchory/coding-style": "^0.1.2",
     "@tailwindcss/vite": "^4.1.0",
-    "@types/node": "^26.1.1",
+    "@types/node": "^24.0.0",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/test-utils": "^2.4.6",
     "eslint": "^10.0.0",
@@ -36,7 +36,7 @@
     "vue-tsc": "^3.0.0"
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=24"
   },
   "packageManager": "pnpm@10.33.0"
 }

@@ -3,4 +3,6 @@
 /.cache/
 /coverage/
 *.tsbuildinfo
+*.local
+.env*
 .DS_Store

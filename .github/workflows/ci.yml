@@ -32,6 +32,12 @@ jobs:
             run: pnpm test
           - name: Build
             run: pnpm run build
+          # brace-expansion <=5.0.7 (GHSA-mh99-v99m-4gvg) is reached three levels inside
+          # @vue/test-utils, which is already at its latest release, and the only patched
+          # version is a major ahead of what minimatch@9 accepts. Accepted knowingly; drop
+          # this exclusion once the chain updates.
+          - name: Dependency audit
+            run: pnpm audit --audit-level high --ignore GHSA-mh99-v99m-4gvg
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

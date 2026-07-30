@@ -6,6 +6,6 @@ export default defineConfig({
     plugins: [vue(), tailwindcss()],
     test: {
         environment: 'happy-dom',
-        include: ['tests/**/*.test.ts'],
+        include: ['{src,tests}/**/*.{test,spec}.ts'],
     },
 });
