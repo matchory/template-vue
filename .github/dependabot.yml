@@ -21,6 +21,11 @@ updates:
       default-days: 5
     labels:
       - dependencies
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - '*'
 
   - package-ecosystem: github-actions
     multi-ecosystem-group: github-actions
@@ -31,3 +36,8 @@ updates:
       default-days: 5
     labels:
       - dependencies
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - '*'
