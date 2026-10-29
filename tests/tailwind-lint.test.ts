@@ -23,5 +23,9 @@ describe('Tailwind class linting', () => {
         // eslint.config.js disappears entirely.
         expect(unknownClassMessages).toHaveLength(1);
         expect(unknownClassMessages[0]?.message).toContain('not-a-real-class');
+
+        // Moving src/style.css without updating tailwindEntryPoint does not fail
+        // lint; the plugin falls back to Tailwind's default theme and says so here.
+        expect(unknownClassMessages[0]?.message).not.toContain('No tailwind css entry point');
     });
 });
